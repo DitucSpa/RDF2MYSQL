@@ -1,6 +1,8 @@
-# commenti
-# aggiustare il passaggio dei nomi "owl:Class", "owl:..."
+# commentare tutto
+# aggiustare il passaggio dei nomi "owl:Class", "owl:..." e del "definition.txt"
 # pip install -r requirements.txt
+# sistemare codice per accettare anche json e convertirli
+# convertire ttl in rdf
 
 
 
