@@ -15,7 +15,7 @@ This tool converts a RDF/XML (or alternatively a JSON-LD) file into a MySQL Sche
 cd /Users/.../RDF2MYSQL
 ```
 
-2. Before starting the tool, check if you have already downloaded all the python packages needed for this tool, using  the _**requirements.txt**_ file inside the RDF2MYSQL folder.
+2. Before starting the tool, make sure if you have already downloaded all the python packages needed for this tool, using  the _**requirements.txt**_ file inside the RDF2MYSQL folder.
 ```bash
 pip install -r requirements.txt
 ```
