@@ -24,12 +24,12 @@ import definition_file_creation
 import create_random_string
 
 
-definition_path = r"\definition.txt"
+definition_path = "/definition.txt"
 rdf_keyWord = {"class":"owl:Class",
                "objectProperty":"owl:ObjectProperty",
                "dataTypeProperty":"owl:DatatypeProperty"}
 user_work_path = os.getcwd()
-dataTypeMapping_path = user_work_path + r"\types_mapping.txt"
+dataTypeMapping_path = user_work_path + "/types_mapping.txt"
 connection_params = {}
 
 
@@ -144,20 +144,29 @@ class RDF2MYSQLPage(tk.Frame):
 
             try:
                 global user_work_path, dataTypeMapping_path
-                if not os.path.exists(dataTypeMapping_path):
-                    raise TypeError("ERROR: the types_mapping.txt file is missing in the '{0}' directory".format(user_work_path))
+
 
                 tf = filedialog.askopenfilename(initialdir=user_work_path, title="Open RDF/XML file",
-                                                filetypes=(("RDF/XML file", "*.owl"),))
+                                                filetypes=(("RDF/XML file", "*.owl *.txt"),))
                 updateTxt(txtpath, END, tf) # update the txt path with the path of the file
-                tf = open(tf)
-                data = tf.read()
-                tf.close()
-                ElaborateFile(data) # start to elaborate the file, passing the data of the file uploaded
+                tf_open = open(tf)
+                data = tf_open.read()
+                if str(os.path.split(tf)[-1]) == 'types_mapping.txt':
+                    with open(dataTypeMapping_path, 'w') as f:
+                        f.write(data)
+                    tf_open.close()
+                    updateTxt(txtprogression, END, "\n***{0}***".format("'types_mapping.txt' imported successfully"))
+                    updateProgressBar(pb1, 100, start=True)
+                    return
+                tf_open.close()
                 if os.path.exists(user_work_path + definition_path):
                     os.remove(user_work_path + definition_path)
+                if not os.path.exists(dataTypeMapping_path):
+                    raise TypeError("ERROR: the 'types_mapping.txt' file is missing in the '{0}' directory. Please upload 'types_mapping.txt' first".format(user_work_path))
+                ElaborateFile(data) # start to elaborate the file, passing the data of the file uploaded
+
             except TypeError as ex: updateTxt(txtprogression, END, "\n***{0}***".format(ex)) # the user is selecting a file
-            except: # the user doesn't select any file
+            except Exception as ex: # the user doesn't select any file
                 cleanTxt('1.0', txtprogression)
                 cleanTxt(0, txtpath)
             finally: return
