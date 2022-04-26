@@ -1,6 +1,4 @@
 # RDF2MYSQL
-
-
 <p float="left">
   <img src="https://user-images.githubusercontent.com/90385079/165370609-ee93b751-24d8-401c-97d4-1341d474d70f.png" width="80"/>&emsp;&emsp;
   <img src="https://user-images.githubusercontent.com/90385079/165370200-71a7a6ad-ee08-4558-a90a-e2d17b9f5724.png" width="80"/>
@@ -32,4 +30,15 @@ Before using the tool, it is necessary to establish the connection with your MyS
 After the connection is established, you can upload your RDF/XML (or alternatively JSON-LD) using the _**Upload File**_ button, as shown below.<br>
 <img width="600" alt="Main Page" src="https://user-images.githubusercontent.com/90385079/165373317-5426153c-5b59-4475-9efb-b67a9a861de7.png"><br>
 IN PROGRESS...
+<br>
+<br>
+
+        ______ ______ ______  _____ ___  _____   __ _____  _____  _     
+        | ___ \|  _  \|  ___|/ __  \|  \/  |\ \ / //  ___||  _  || |    
+        | |_/ /| | | || |_   `' / /'| .  . | \ V / \ `--. | | | || |    
+        |    / | | | ||  _|    / /  | |\/| |  \ /   `--. \| | | || |    
+        | |\ \ | |/ / | |    ./ /___| |  | |  | |  /\__/ /\ \/' /| |____
+        \_| \_||___/  \_|    \_____/\_|  |_/  \_/  \____/  \_/\_\\_____/
+
+[Gianluca Di Tuccio](https://github.com/DitucSpa), [Elisa Riforgiato](https://github.com/elithkob)
 
