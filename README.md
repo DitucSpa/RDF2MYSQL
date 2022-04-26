@@ -6,7 +6,7 @@
   <img src="https://user-images.githubusercontent.com/90385079/165370200-71a7a6ad-ee08-4558-a90a-e2d17b9f5724.png" width="80"/>
 
 </p>
-This tool converts a RDF/XML (or alternatively a JSON-LD) file into a MySQL Schema DataBase.<br>
+This tool converts an RDF/XML file (or alternatively a JSON-LD file) into a MySQL Schema DataBase.<br>
 
 
 ## How to run RDF2MYSQL on MacOS
