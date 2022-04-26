@@ -1,0 +1,865 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://unibo.it/ontology/SmartHospitalAssistant#"
+     xml:base="http://unibo.it/ontology/SmartHospitalAssistant"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:sha="http://unibo.it/ontology/SmartHospitalAssistant#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://unibo.it/ontology/SmartHospitalAssistant">
+        <rdfs:comment>Mancano alcuni commenti.
+
+Ho dei dubbi su object e data.
+
+ward_section: associatedAnatomy, possibleComplication, possibleTreatment, primaryPrevention, stage, code, signOrSymptom, typicalTest, summary, image, other.
+
+general_section: riskFactor, summary_life, other, bloodGroup, other.
+
+Pensare come aggiungere reparti (sottoclassi?).
+
+Collegare health_worker a reparti (andata e ritorno).
+
+Orario settimanale dottore (time:dayOFWeek, problema con orario però --&gt; fare una literal generale e gestisco le informazioni dal software?)
+
+working_email, working_phone_number for medical_staff.
+
+farther_information for medical_staff.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#Literal -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2000/01/rdf-schema#Literal">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#can_read -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#can_read">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Nursing_Staff"/>
+        <rdfs:range rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+        <rdfs:comment xml:lang="en">Nursing staff can onlyh read the medical records.</rdfs:comment>
+        <rdfs:label xml:lang="en">can_read</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#can_read_write -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#can_read_write">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Staff"/>
+        <rdfs:range rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+        <rdfs:comment xml:lang="en">Medical staff can write and read the medical records.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_ID_health_worker -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_ID_health_worker">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Health_Worker"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#ID_health_worker"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_ID_health_worker</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_ID_medical_records -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_ID_medical_records">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#ID_medical_records"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_ID_medical_records</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_ID_patient -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_ID_patient">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Patient"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#ID_patient"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_ID_patient</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_address -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_address">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#address"/>
+                <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_address</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_birth_date -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_birth_date">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#birthDate"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_birth_date</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_birth_place -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_birth_place">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#birthPlace"/>
+                <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_birth_place</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_creation_date -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_creation_date">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#creation_date"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:comment xml:lang="en">The medical records has a creation&apos;s date.</rdfs:comment>
+        <rdfs:label xml:lang="en">has_creation_date</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_death_date -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_death_date">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#deathDate"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_death_date</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_death_place -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_death_place">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#deathPlace"/>
+                <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_death_place</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_doctor -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_doctor">
+        <owl:inverseOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_patient"/>
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Patient"/>
+        <rdfs:range rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Staff"/>
+        <rdfs:comment xml:lang="en">has_doctor</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_email -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_email">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#email"/>
+                <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_email</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_family_name -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_family_name">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#familyName"/>
+                <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_family_name</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_fiscal_code -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_fiscal_code">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#fiscalCode"/>
+                <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_fiscal_code</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_gender -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_gender">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#gender"/>
+                <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_gender</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_general_drug -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_general_drug">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#General_Section"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#general_drug"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_general_drug</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_latest_modification -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_latest_modification">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#latest_modification"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:comment xml:lang="en">Date of the latest modification of the medical records.</rdfs:comment>
+        <rdfs:label xml:lang="en">has_latest_modification</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_medical_records -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_medical_records">
+        <owl:inverseOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#of_patient"/>
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+        <rdfs:label xml:lang="en">has_medical_records</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_patient -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_patient">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Staff"/>
+        <rdfs:range rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Patient"/>
+        <rdfs:comment xml:lang="en">has_patient</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_phone_number -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_phone_number">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#phoneNumber"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_phone_number</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_ward -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_ward">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Ward_Section"/>
+        <rdfs:range rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Hospital_Ward"/>
+        <rdfs:comment xml:lang="en">Used for relation between ward section of medical records and hospital ward.</rdfs:comment>
+        <rdfs:label xml:lang="en">has_ward</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#has_ward_drug -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#has_ward_drug">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Ward_Section"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#ward_drug"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">has_ward_drug</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#of_patient -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#of_patient">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+        <rdfs:range rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:comment xml:lang="en">Used for relation between medical records and Person.</rdfs:comment>
+        <rdfs:label xml:lang="en">of_patient</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#take_care -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#take_care">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Health_Worker"/>
+        <rdfs:range rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Patient"/>
+        <rdfs:comment xml:lang="en">take_care</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#who_has_done_last_modification -->
+
+    <owl:ObjectProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#who_has_done_last_modification">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#who_latest_modification"/>
+                <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:comment xml:lang="en">It references to whom have done the last modification</rdfs:comment>
+        <rdfs:label xml:lang="en">who_has_done_last_modification</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#ID_health_worker -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#ID_health_worker">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Health_Worker"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:label xml:lang="en">ID_health_worker</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#ID_medical_records -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#ID_medical_records">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#ID_patient -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#ID_patient">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Patient"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:label xml:lang="en">ID_patient</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#address -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#address">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_address"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">Used for living address.</rdfs:comment>
+        <rdfs:label xml:lang="en">address</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#birthDate -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#birthDate">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_birth_date"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment xml:lang="en">YYYY/MM/DDT00:00:00 
+Set time to default value from software.</rdfs:comment>
+        <rdfs:label xml:lang="en">birthDate</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#birthPlace -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#birthPlace">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_birth_place"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en"></rdfs:comment>
+        <rdfs:label xml:lang="en">birthPlace</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#creation_date -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#creation_date">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_creation_date"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment xml:lang="en">Create date of the medical records</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#deathDate -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#deathDate">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_death_date"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment xml:lang="en">YYYY/MM/DDT00:00:00 
+Set time to default value from software.</rdfs:comment>
+        <rdfs:label xml:lang="en">deathDate</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#deathPlace -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#deathPlace">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_death_place"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en"></rdfs:comment>
+        <rdfs:label xml:lang="en">deathPlace</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#email -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#email">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_email"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">Used for personal email (not working email).</rdfs:comment>
+        <rdfs:label xml:lang="en">email</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#familyName -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#familyName">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_family_name"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">Used for surname of a Person.</rdfs:comment>
+        <rdfs:label xml:lang="en">familyName</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#fiscalCode -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#fiscalCode">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_fiscal_code"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">Fiscal Code is a code of 16 chars (in Italy).</rdfs:comment>
+        <rdfs:label xml:lang="en">fiscalCode</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#gender -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#gender">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_gender"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">There are three gender: male, female and other.</rdfs:comment>
+        <rdfs:label xml:lang="en">gender</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#general_drug -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#general_drug">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#General_Section"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">It&apos;s used if Patient has a generic drug that he uses along life.</rdfs:comment>
+        <rdfs:label xml:lang="en">general_drug</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#givenName -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#givenName">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">Used for first name of a Person.</rdfs:comment>
+        <rdfs:label xml:lang="en">givenName</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#latest_modification -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#latest_modification">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_latest_modification"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment xml:lang="en">Date of the latest modification of the medical records.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#phoneNumber -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#phoneNumber">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#has_phone_number"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:comment xml:lang="en">Used for personal phone number (not working number).</rdfs:comment>
+        <rdfs:label xml:lang="en">phoneNumber</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#wardName -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#wardName">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Hospital_Ward"/>
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Ward_Section"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#ward_drug -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#ward_drug">
+        <rdfs:domain rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Ward_Section"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">Ward drug is the drug used in that medical records.</rdfs:comment>
+        <rdfs:label xml:lang="en">ward_drug</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#who_latest_modification -->
+
+    <owl:DatatypeProperty rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#who_latest_modification">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#who_has_done_last_modification"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">Who has done the last modification of the medical records.</rdfs:comment>
+        <rdfs:label xml:lang="en">who_latest_modification</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Doctor -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Doctor">
+        <rdfs:subClassOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Staff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#General_Section -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#General_Section">
+        <rdfs:subClassOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+        <rdfs:comment xml:lang="en">Used for general health information like blood group, progressive pathologies, etc.</rdfs:comment>
+        <rdfs:label xml:lang="en">General_Section</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Head_Nurse -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Head_Nurse">
+        <rdfs:subClassOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Nursing_Staff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Head_Physician -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Head_Physician">
+        <rdfs:subClassOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Staff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Health_Worker -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Health_Worker">
+        <rdfs:subClassOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+        <owl:disjointWith rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Patient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Hospital_Ward -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Hospital_Ward">
+        <rdfs:label xml:lang="en">Hospital_Ward</rdfs:label>
+        <rdfs:label xml:lang="it">Reparto</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#MedicalEntity -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#MedicalEntity">
+        <rdfs:label>Medical_Entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records">
+        <rdfs:subClassOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#MedicalEntity"/>
+        <rdfs:label xml:lang="en">Medical_Records</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Medical_Staff -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Staff">
+        <rdfs:subClassOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Health_Worker"/>
+        <owl:disjointWith rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Nursing_Staff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Nurse -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Nurse">
+        <rdfs:subClassOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Nursing_Staff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Nursing_Staff -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Nursing_Staff">
+        <rdfs:subClassOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Health_Worker"/>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Patient -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Patient">
+        <rdfs:subClassOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Person -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Person">
+        <rdfs:label xml:lang="en">Person</rdfs:label>
+        <rdfs:label xml:lang="it">Persona</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://unibo.it/ontology/SmartHospitalAssistant#Ward_Section -->
+
+    <owl:Class rdf:about="http://unibo.it/ontology/SmartHospitalAssistant#Ward_Section">
+        <rdfs:subClassOf rdf:resource="http://unibo.it/ontology/SmartHospitalAssistant#Medical_Records"/>
+        <rdfs:comment xml:lang="en">Used for the ward&apos;s event; you must including what has been done, etc.</rdfs:comment>
+        <rdfs:label xml:lang="en">Ward_Section</rdfs:label>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

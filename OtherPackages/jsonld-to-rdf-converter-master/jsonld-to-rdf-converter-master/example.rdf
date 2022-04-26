@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:schema="https://schema.org/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <schema:Dataset rdf:nodeID="N7a14c86b4dee4b388085ec79ab94f39b">
+    <schema:name rdf:datatype="https://schema.org/Text">Test dataset</schema:name>
+    <schema:description rdf:datatype="https://schema.org/Text">This is a test dataset.</schema:description>
+  </schema:Dataset>
+</rdf:RDF>
